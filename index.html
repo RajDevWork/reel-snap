@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snap</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+    rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            font-family: "Roboto", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+        html,body{
+            width:100%;
+            height: 100%;
+        }
+        main{
+            width: 100%;
+            height: 100%;
+            background:linear-gradient(to top,#111,#333);
+           
+        }
+        .all-reels{
+            width:25%;
+            margin: 0 auto;
+            height: 100%;
+            border-radius: 20px;
+            overflow: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+        .all-reels {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        }
+        .all-reels::-webkit-scrollbar {
+        display: none;
+        }
+        .reel{
+            height: 100vh;
+            width: 100%;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            background-color: black;
+        }
+        .top video{
+            width: 100%;
+            object-fit: cover;
+            height: 100vh;
+        }
+        .activity{
+            position: absolute;
+            right: 10px;
+            top: 35%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            color:white;
+        }
+        .activity div{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+
+        }
+        .activity i{
+            font-size: 25px;
+            font-weight: 200;
+        }
+        .bottom{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            padding: 20px 10px;
+            background: linear-gradient(#1110,#444444d1);
+        }
+        .bottom img{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .bottom .fst-div{
+            display: flex;
+            align-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .fst-div h2{
+            color: white;
+            font-size: 12px;
+        }
+        .fst-div button{
+            padding: 10px 20px;
+            background: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .snd-div h1{
+            font-size: 25px;
+            font-weight: 900;
+            color: white;
+        }
+
+        .source>img{
+             width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="all-reels">
+        </div>
+    </main>
+
+    <script>
+        const reelsData = [
+                {
+                    image: "videos/1.mp4",
+                    likes: 1000,
+                    is_liked :true,
+                    comments: 120,
+                    shares: 80,
+                    remix: 50,
+                    profile: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900",
+                    username: "@raj_1234",
+                    caption: "Enjoying the day vibes 😄✨"
+                },
+                {
+                    image: "videos/2.mp4",
+                    likes: 2500,
+                    is_liked :false,
+                    comments: 340,
+                    shares: 150,
+                    remix: 95,
+                    profile: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=900",
+                    username: "@priya_arts",
+                    caption: "Art is my language 🎨❤️"
+                },
+                {
+                    image: "videos/3.mp4",
+                    likes: 900,
+                    is_liked :true,
+                    comments: 100,
+                    shares: 60,
+                    remix: 40,
+                    profile: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=900",
+                    username: "@music_life",
+                    caption: "Feel the beats 🎧🔥"
+                },
+                {
+                    image: "videos/4.mp4",
+                    likes: 1300,
+                    comments: 180,
+                    shares: 90,
+                    remix: 70,
+                    is_liked :true,
+                    profile: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=900",
+                    username: "@fitness_pro",
+                    caption: "Never give up 💪🔥"
+                },
+                {
+                    image: "videos/5.mp4",
+                    likes: 5000,
+                    comments: 900,
+                    shares: 300,
+                    remix: 200,
+                    is_liked :true,
+                    profile: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=900",
+                    username: "@travel_addict",
+                    caption: "Adventure awaits ✈️"
+                },
+                {
+                    image: "videos/10.mp4",
+                    likes: 2200,
+                    comments: 310,
+                    shares: 120,
+                    is_liked :false,
+                    remix: 85,
+                    profile: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=900",
+                    username: "@dance_star",
+                    caption: "Dance like no one is watching 💃🔥"
+                },
+                {
+                    image: "videos/6.mp4",
+                    likes: 480,
+                    comments: 38,
+                    shares: 15,
+                    is_liked :true,
+                    remix: 10,
+                    profile: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900",
+                    username: "@tech_guru",
+                    caption: "Life powered by code 💻⚡"
+                },
+                {
+                    image: "videos/7.mp4",
+                    likes: 3000,
+                    comments: 400,
+                    shares: 180,
+                    remix: 90,
+                    is_liked :true,
+                    profile: "https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=900",
+                    username: "@foodie_boy",
+                    caption: "Yummy from every angle 🍕🤤"
+                },
+                {
+                    image: "videos/8.mp4",
+                    likes: 700,
+                    comments: 98,
+                    shares: 44,
+                    is_liked :false,
+                    remix: 22,
+                    profile: "https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=900",
+                    username: "@style_queen",
+                    caption: "Fashion is freedom 👗✨"
+                },
+                {
+                    image: "videos/9.mp4",
+                    likes: 950,
+                    comments: 110,
+                    shares: 55,
+                    is_liked :false,
+                    remix: 28,
+                    profile: "https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=900",
+                    username: "@coder_bros",
+                    caption: "Debugging mode: ON 👨‍💻🔥"
+                }
+                ];
+
+                let feedData = '';
+
+                reelsData.forEach(function(elem){
+
+                    feedData+=`<div class="reel">
+                <div class="top">
+                    <video autoplay muted loop playsinline>
+                       <source src="${elem.image}" type="video/mp4">
+                    </video>
+                </div>
+                <div class="activity">
+                        <div class="like">
+                            ${elem.is_liked ? `<i class="ri-heart-fill" style="color: red;"></i>`:`<i class="ri-heart-line"></i>`}
+                            <h5>${elem.likes}</h5>
+                        </div>
+                        <div class="comment">
+                            <i class="ri-message-2-line"></i>
+                            <h5>${elem.comments}</h5>
+                        </div>
+                        <div class="share">
+                            <i class="ri-send-plane-line"></i>
+                            <h5>${elem.shares}</h5>
+                        </div>
+                        <div class="remix-more">
+                            <i class="ri-loop-left-fill"></i>
+                            <h5>${elem.remix}</h5>
+                        </div>
+                        <div class="source">
+                            <img src="${elem.profile}" alt="">
+                        </div>
+                </div>
+                <div class="bottom">
+                    <div class="fst-div">
+                        <img src="${elem.profile}" alt="user">
+                        <h2>${elem.username}</h2>
+                        <button>Subscribe</button>
+                    </div>
+                    <div class="snd-div">
+                        <h1>${elem.caption}</h1>
+                    </div>
+                </div>
+                
+            </div>`;
+
+                })
+
+            let allreels = document.querySelector(".all-reels");
+            allreels.innerHTML = feedData;
+    </script>
+</body>
+</html>
